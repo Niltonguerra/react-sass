@@ -1,0 +1,25 @@
+//comandos:
+
+
+//Pode-se considerar .scss e .sass como a mesma coisa o que muda e como se escreve o código apenas
+
+
+//instalar o sass
+
+npm install -g sass
+
+
+
+// faz com que toda vez que salvarmos o projeto após executar esse comando, toda vez 
+// que viermos a fazer alguma alteração no arquivo .scss ele irá alterar e automaticamente 
+// salvar o arquivo .css
+
+sass --watch "local do arquivo .scss":"local do arquivo .css" --style compressed
+
+
+    //exemplo usado no código deste arquivo:
+sass --watch ./src/assets/scss/style.scss:./src/assets/css/style.css --style compressed
+
+
+
+

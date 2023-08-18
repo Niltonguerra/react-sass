@@ -1,0 +1,260 @@
+@import "./variaveis.scss";
+
+
+// é aconselhavel para deixar o código mais organizado
+// dividir as classes em arquivos, todavia para efeito
+// didatico irei colocar todas as classes apenas nesse
+// arquivo
+
+
+
+// aula 01 à 03
+
+
+// permite colocar classes dentro de outras classes
+
+
+// p{
+//     background:black);
+//     color: aliceblue;
+//     .btn{
+//         color:green);
+//         background-color: brown;
+
+//         &:hover{
+//             background-color: green;
+//         }    
+//     }
+//     // colocando o hover
+    
+//     span{
+//         background: gray;
+
+//         p{
+//             color: blue;
+//         }
+//     }
+
+//     b{
+//         background-color: burlywood;
+//         color: black;
+//     }
+
+// }
+
+
+// aula 04
+
+// variaveis
+
+
+// normalmente os "import's" ficaria no começo do arquivo, mas
+// para ficar mais didatico vou colocar aqui e no 
+// começo do arquivo.
+
+// import's:
+
+// @import "./variaveis.scss";
+// @import "./button.scss";
+
+
+
+// aula 05 
+
+
+// Heranças de classes
+
+// forma 01
+// .btn{
+//     width: 200px;
+//     padding: 10px 0;
+
+//     &.btn-laranja{
+//         background-color: $color-orange;
+//     }
+// }
+
+// // forma 02
+// .btn-azul{
+//     @extend .btn;
+//     background-color: blue;
+// }
+
+
+
+
+
+
+// aula 06
+
+// criando classes reutilizaveis
+
+
+// pode-se usar tanto @extends quando @include,
+// mas atenção com a sintaxe de definir e chamar,
+// pois é diferente.
+
+
+
+// @mixin button-style($corFundo,$corLetra){
+//     background-color:$corFundo;
+//     color: $corLetra;
+
+// }
+
+
+
+// .btn{
+//     width: 200px;
+//     padding: 10px 0;
+//     border: none;
+//     border-radius: 10px;
+//     display: block;
+//     margin: 10px 0;
+
+// }
+
+
+// .btn-laranja{
+//     @extend .btn;
+//     @include button-style($color-orange,white );
+// }
+
+
+
+// .btn-roxo{
+//     @extend .btn;
+//     @include button-style($color-purple,white );
+// }
+
+
+// .btn-amarelo{
+//     @extend .btn;
+//     @include button-style($color-yellow,white );
+// }
+
+
+
+
+
+
+// aula 07
+
+// refatoração de código,
+// tornando o código mais dinâmico e rápido
+
+
+// ponto 01:
+// de preferencia para chamar as classes 
+// dentro de outras classes ao invés de usar o
+// @extend.
+
+
+// ponto 02:
+// de preferencia para o @extend ao invéz de usar 
+// o @include
+
+
+
+
+
+
+
+
+
+
+// aula 08 --- usando funções do sass
+
+
+
+// pode ver todas as funções do sass na documentação
+
+// funções:
+// darken,desaturate,mix,grayscale,lightness
+
+
+
+
+
+
+
+
+
+
+
+// aula 8.1 --- criando funções no sass
+
+// a função lightness verifica o quão claro é o fundo 
+@function ftcolor($bgcolor){
+
+    // aqui ele verifica a cor da fonte
+    @if(lightness($bgcolor) > 50){
+        @return black;
+    }@else{
+        @return white;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin button-style($corFundo){
+    background-color:$corFundo;
+
+    // agora com essa função que criamos ele escolhe a
+    // cor da fonte automaticamente
+    color:ftcolor($corFundo);
+
+    &:hover{
+
+        // você pode colocar alguns efeitos usando
+        // funções já criadas pelo sass, aqui estão 
+        // algumas:
+
+        background-color:  darken($corFundo,10%);  
+        // background-color:  desaturate($corFundo,10%);
+        // background-color:  mix($corFundo,$color-green);
+        // background-color:  grayscale($corFundo); 
+
+    }
+
+}
+
+
+
+.btn{
+    width: 200px;
+    padding: 10px 0;
+    border: none;
+    border-radius: 10px;
+    display: block;
+    margin: 10px 0;
+
+    &.btn-laranja{
+        @include button-style($color-orange);
+    }
+    
+    
+    
+    &.btn-roxo{
+        @include button-style($color-purple);
+    }
+    
+    
+    &.btn-amarelo{
+        @include button-style($color-yellow);
+    }
+    
+
+}
+
+
+
